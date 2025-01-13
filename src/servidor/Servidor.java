@@ -1,3 +1,5 @@
+package servidor;
+
 import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
@@ -5,7 +7,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 
-// "Servidor extends Thread" para permitir que cada conexão de cliente seja executada de forma independente.
+// "servidor.Servidor extends Thread" para permitir que cada conexão de cliente seja executada de forma independente.
 public class Servidor extends Thread {
 
     // Armazena os fluxos de saída (BufferedWriter) de todos os clientes conectados, permitindo envio de mensagens a -
@@ -48,10 +50,10 @@ public class Servidor extends Thread {
     }
 
     /**
-     * O método run() da classe Servidor é o ponto de entrada da thread associada a cada cliente conectado.
+     * O método run() da classe servidor.Servidor é o ponto de entrada da thread associada a cada cliente conectado.
      * Ele define o comportamento que será executado paralelamente para cada conexão de cliente.
      * O método run() é parte da classe Thread e precisa ser sobrescrito para especificar o que a thread deve executar.
-     * Ao estender Thread, cada instância da classe Servidor representa uma thread separada.
+     * Ao estender Thread, cada instância da classe servidor.Servidor representa uma thread separada.
      * Isso permite que o servidor lide com múltiplos clientes simultaneamente.
      * **/
     @Override
@@ -144,23 +146,23 @@ public class Servidor extends Thread {
                 // Criação do ServerSocket
                 server = new ServerSocket(porta);
                 clientes = new ArrayList<BufferedWriter>();
-                JOptionPane.showMessageDialog(null, "Servidor na porta: " + porta);
+                JOptionPane.showMessageDialog(null, "servidor.Servidor na porta: " + porta);
 
                 // Aguardando conexões infinitamente a menos que o código seja interrompido
                 while (true) {
                     System.out.println("Aguardando conexão...");
                     Socket con = server.accept();
-                    System.out.println("Cliente conectado...");
+                    System.out.println("cliente.Cliente conectado...");
                     Thread t = new Servidor(con);
                     t.start();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao iniciar Servidor: " + e
+                JOptionPane.showMessageDialog(null, "Erro ao iniciar servidor.Servidor: " + e
                         .getMessage());
             }
         } else {
             // Se o usuário cancelar ou fechar a janela, o servidor não será iniciado
-            System.out.println("Servidor não iniciado. A janela foi fechada.");
+            System.out.println("servidor.Servidor não iniciado. A janela foi fechada.");
         }
     }
 }
