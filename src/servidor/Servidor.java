@@ -23,7 +23,7 @@ class Servidor {
             servidorFinal = new ServerSocket(porta);
             JOptionPane.showMessageDialog(null, "Servidor iniciado na porta: " + porta);
 
-            while (true) {
+            while (!servidorFinal.isClosed()) { // Verifica se o servidor não foi fechado
                 System.out.println("Aguardando conexão...");
                 Socket conexao = servidorFinal.accept();
                 System.out.println("Cliente conectado...");

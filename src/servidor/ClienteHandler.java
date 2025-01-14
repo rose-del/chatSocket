@@ -44,15 +44,22 @@ public class ClienteHandler implements Runnable {
             synchronized (clientes) {
                 clientes.remove(escreveDados);
             }
-            leitorDados.close();
-            escreveDados.close();
-            conexao.close();
+
+            try {
+                leitorDados.close();
+                escreveDados.close();
+                conexao.close();
+            } catch (IOException e) {
+                System.out.println("Erro ao fechar a conexão com o cliente: " + e.getMessage());
+            }
+
         }   catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void enviarParaTodos(String mensagem) {
+
         synchronized (clientes) {
             for (BufferedWriter cliente : clientes) {
                 try {
