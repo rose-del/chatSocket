@@ -31,8 +31,7 @@ public class Servidor {
                 Socket conexao = servidorFinal.accept();
                 System.out.println("Cliente conectado...");
 
-                ClienteHandler clienteHandler = new ClienteHandler(conexao, clientes); // Falta criar a classe ClienteHandler
-                Thread clienteThread = clienteHandler;                                 // Falta criar a classe ClienteHandler
+                Thread clienteThread = new Thread(new ClienteHandler(conexao, clientes));
                 clienteThread.start();
             }
 
