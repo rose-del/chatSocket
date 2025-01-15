@@ -58,7 +58,7 @@ public class Servidor extends Thread {
     public void sendToAll(BufferedWriter bwSaida, String msg) throws IOException {
         BufferedWriter bwS;
         for (BufferedWriter bw : clientes) {
-            bwS = bw;                                       // Atribui o fluxo do cliente atual (bw) à variável bwS.
+            bwS = bw; // Atribui o fluxo do cliente atual (bw) à variável bwS.
             if (!(bwSaida == bwS)) {
                 bw.write(nome + " -> " + msg + "\r\n");
                 bw.flush();

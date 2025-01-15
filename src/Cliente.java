@@ -76,7 +76,7 @@ public class Cliente {
             bfw.write(userName + "\r\n"); // Envia o nome do cliente ao servidor.
             bfw.flush();
 
-            ouvirMensagens(); // Inicia a escuta de mensagens.
+            ouvirMensagens();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(frame, "Erro ao conectar: " + e.getMessage());
         }
