@@ -7,6 +7,8 @@ import java.net.Socket;
 
 public class Cliente {
     private JFrame frame;
+    private JTextField txtIP;
+    private JTextField txtPorta;
     private JPanel chatPanel; // Área que exibe as mensagens do chat
     private JScrollPane scrollPane; // Permite rolar o painel de mensagens
     private JTextField mensagemFiel;
@@ -38,6 +40,12 @@ public class Cliente {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Define que a aplicação será encerrada ao fechar a janela.
         frame.setSize(500, 600);
         frame.setLayout(new BorderLayout());
+
+        JLabel lblMessage = new JLabel("Verificar!");
+        txtIP = new JTextField("127.0.0.1");
+        txtPorta = new JTextField("12345");
+        Object[] texts = {lblMessage, txtIP, txtPorta};
+        JOptionPane.showMessageDialog(null, texts);
 
         chatPanel = new JPanel();
         chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS)); // Define o layout do painel para organizar as mensagens em uma pilha vertical.
@@ -82,7 +90,8 @@ public class Cliente {
      * Gerencia as principais funcionalidades do cliente do chat.
      * Inclui a configuração do nome do usuário, conexão ao servidor, envio e recebimento de mensagens,
      * manipulação de interface, e o gerenciamento da desconexão.
-     */
+     **/
+
 
     /**
      * Solicita o nome do usuário antes da conexão, através de uma caixa de diálogo.
@@ -94,7 +103,6 @@ public class Cliente {
             userName = "Usuário";
         }
     }
-
 
     /**
      * Realiza a conexão com o servidor de chat.
@@ -108,9 +116,9 @@ public class Cliente {
      * - Iniciar o metodo de escuta para receber mensagens do servidor.
      * - Em caso de erro na conexão, uma mensagem será exibida ao usuário.
      */
-    public void conectar(String ip, int porta) {
+    public void conectar() {
         try {
-            socket = new Socket(ip, porta);
+            socket = new Socket(txtIP.getText(), Integer.parseInt(txtPorta.getText()));
             ou = socket.getOutputStream();
             ouw = new OutputStreamWriter(ou);
             bfw = new BufferedWriter(ouw);
@@ -220,6 +228,6 @@ public class Cliente {
     public static void main(String[] args) {
         Cliente cli = new Cliente();
         cli.mostrar();
-        cli.conectar("127.0.0.1", 12345); // Conecta ao servidor no endereço e porta especificados.
+        cli.conectar(); // Conecta ao servidor no endereço e porta especificados.
     }
 }
