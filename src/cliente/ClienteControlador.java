@@ -31,7 +31,7 @@ public class ClienteControlador {
     }
 
     public void iniciar() {
-        gui.mostrar();
+
         String userName = gui.solicitarNomeUsuario();
 
         JLabel lblMensagem = new JLabel("Verificar!");
@@ -41,6 +41,8 @@ public class ClienteControlador {
         JOptionPane.showMessageDialog(null, texts);
 
         conexao.conectar(txtIP.getText(), Integer.parseInt(txtPorta.getText()), userName);
+        gui.mostrar();
         conexao.ouvirMensagem(gui);
+
     }
 }
