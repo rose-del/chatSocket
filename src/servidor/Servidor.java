@@ -66,11 +66,11 @@ class Servidor {
 
             // Aguarda conexões de clientes enquanto o servidor estiver ativo.
             while (!servidorFinal.isClosed()) { // Verifica se o servidor não foi fechado
-                System.out.println("Aguardando conexão...");
+                System.out.println("Aguardando conexão...\n");
 
                 // Aceita a conexão do cliente.
                 Socket conexao = servidorFinal.accept();
-                System.out.println("Cliente conectado...");
+                System.out.println("\nCliente conectado...");
 
                 // Cria e inicia uma thread para lidar com o cliente conectado.
                 Thread clienteThread = new Thread(new ClienteHandler(conexao, clientes));

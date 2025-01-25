@@ -2,6 +2,7 @@ package servidor;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 /**
@@ -91,30 +92,37 @@ public class ClienteHandler implements Runnable {
 
             // Lê o nome do cliente.
             this.nome = leitorDados.readLine();
-            String msg;
+
 
             // Processa mensagens enviadas pelo cliente.
+            String msg;
             while ((msg = leitorDados.readLine()) != null && !msg.equalsIgnoreCase("Sair")) {
                 enviarParaTodos(nome + " -> " + msg);
                 System.out.println(conexao.getInetAddress().getHostAddress() + " (" + nome + ") -> " + msg);
             }
 
+            // Cliente decidiu sair
+            System.out.println("\n" + conexao.getInetAddress().getHostAddress() + " (" + nome + ") Desconectado.\n");
+
+        } catch (SocketException e) {
+            // Conexão foi encerrada abruptamente pelo cliente.
+            System.out.println("\nConexão perdida com o cliente: " + conexao.getInetAddress().getHostAddress()+ "\n");
+        } catch (IOException e) {
+            // Outros erros de E/S.
+            System.err.println("\nErro na comunicação com o cliente: " + e.getMessage()+ "\n");
+        } finally {
             // Remove o cliente da lista de clientes conectados.
             synchronized (clientes) {
                 clientes.remove(escreveDados);
             }
 
-            // Encerra fluxos e a conexão com o cliente.
             try {
-                leitorDados.close();
-                escreveDados.close();
-                conexao.close();
+                if (leitorDados != null) leitorDados.close();
+                if (escreveDados != null) escreveDados.close();
+                if (conexao != null && !conexao.isClosed()) conexao.close();
             } catch (IOException e) {
-                System.out.println("Erro ao fechar a conexão com o cliente: " + e.getMessage());
+                System.err.println("\nErro ao fechar recursos do cliente: " + e.getMessage() + "\n");
             }
-
-        }   catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
