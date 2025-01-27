@@ -46,5 +46,5 @@ git clone https://github.com/rose-del/chatSocket-java.git
 ```
 - **Navegue até o diretório do projeto:**
 ```bash
-cd chat-socket-java
+cd chatSocket
 ```
