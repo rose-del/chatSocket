@@ -3,6 +3,8 @@ package cliente;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Classe responsável pela interface gráfica do cliente de chat.
@@ -18,6 +20,7 @@ public class ClienteGUI {
     private JTextField mensagemField;
     private JButton sendButton;
     private String userName = "Usuário";
+    private ClienteConexao conexao;
 
     public ClienteGUI() {
         frame = new JFrame("CHATsZAp");
@@ -49,10 +52,37 @@ public class ClienteGUI {
         // Adiciona o painel de mensagens e o painel inferior à janela principal.
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        frame.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Exibe um diálogo de confirmação quando o usuário tenta fechar a janela.
+                int confirmacao = JOptionPane.showConfirmDialog(frame, "Deseja realmente sair do chat?",
+                        "Confirmação de Saída", JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirmacao == JOptionPane.YES_OPTION) {
+                    // Se o usuário confirmar, encerra a conexão e fecha o programa.
+                    if (conexao != null) {
+                        conexao.desconectar(); // Encerra a conexão com o servidor.
+                    }
+                    frame.dispose(); // Fecha o frame principal.
+                    System.exit(0); // Encerra a aplicação.
+                } else {
+                    // Se o usuário clicar em "No", cancela o fechamento da janela.
+                    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
     }
 
     public void mostrar() {
         frame.setVisible(true);
+    }
+
+    public void fecharJanela() {
+        frame.dispose();
     }
 
     public String solicitarNomeUsuario() {

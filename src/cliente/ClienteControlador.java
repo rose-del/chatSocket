@@ -37,10 +37,17 @@ public class ClienteControlador {
      */
     private void enviarMensagem() {
         String mensagem = gui.getMensagem();
+
         if (!mensagem.isEmpty()) {
-            conexao.enviarMensagem(mensagem);
-            gui.adicionarMensagem(mensagem, true);
-            gui.limparMensagem();
+            // Se o cliente digitar "sair" no chat ele encerrará a conexão e fechará o chat
+            if (mensagem.equalsIgnoreCase("Sair")) {
+                conexao.desconectar();  // Desconecta do servidor
+                gui.fecharJanela(); // Fecha a interface gráfica
+            }else{
+                conexao.enviarMensagem(mensagem);   // Envia a mensagem
+                gui.adicionarMensagem(mensagem, true);  // Adiciona à interface gráfica
+                gui.limparMensagem();    // Limpa o campo de texto
+            }
         }
     }
 
@@ -57,8 +64,16 @@ public class ClienteControlador {
         JLabel lblMensagem = new JLabel("Verificar!");
         JTextField txtIP = new JTextField("127.0.0.1");
         JTextField txtPorta = new JTextField("12345");
-        Object[] texts = {lblMensagem, txtIP, txtPorta};
-        JOptionPane.showMessageDialog(null, texts);
+        Object[] texts = {lblMensagem, "IP: ", txtIP, "Porta: ", txtPorta};
+
+        int opc = JOptionPane.showConfirmDialog(null, texts, "Configuração de conexão",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (opc != JOptionPane.OK_OPTION) {
+            JOptionPane.showMessageDialog(null, "Execução encerrada pelo usuário.",
+                    "Encerrado", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0); // Encerra a aplicação
+        }
 
         conexao.conectar(txtIP.getText(), Integer.parseInt(txtPorta.getText()), userName);
         gui.mostrar();
