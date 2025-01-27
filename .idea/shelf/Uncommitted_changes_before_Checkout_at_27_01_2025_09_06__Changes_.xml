@@ -1,0 +1,20 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_27_01_2025_09_06_[Changes]" date="1737979587232" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_27_01_2025_09_06_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 27/01/2025 09:06 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/chatSocket/serverClass/ui/ConfiguracaoPorta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/chatSocket/Servidor.class" />
+    <option name="AFTER_PATH" value="out/production/chatSocket/Servidor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_27_01_2025_09_06_[Changes]/Servidor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/chatSocket/Cliente.class" />
+    <option name="AFTER_PATH" value="out/production/chatSocket/Cliente.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_27_01_2025_09_06_[Changes]/Cliente.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/chatSocket/serverClass/core/Server.class" />
+  </binary>
+</changelist>
