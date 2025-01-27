@@ -42,7 +42,7 @@ O servidor gerencia conexões, utiliza threads para garantir comunicação simul
 
 - **Clone este repositório:**
 ```bash
-git clone https://github.com/usuario/chat-socket-java.git
+git clone https://github.com/rose-del/chatSocket-java.git
 ```
 - **Navegue até o diretório do projeto:**
 ```bash
