@@ -1,14 +1,15 @@
 # ChatsZap - Projeto em Java
 
-Este projeto implementa um sistema de chat utilizando sockets em Java. 
+O ChatsZap é um sistema de chat desenvolvido em Java, utilizando sockets para comunicação e Java Swing para a interface gráfica. 
 Ele demonstra a comunicação bidirecional entre um servidor e múltiplos clientes,
 utilizando threads para o gerenciamento simultâneo de conexões.
 
 ## Descrição do Projeto
 
-Este sistema de chat utiliza sockets para permitir que múltiplos clientes se conectem a um servidor central, possibilitando a troca de mensagens em tempo real.
-Os sockets atuam como a "interface" de comunicação entre processos, oferecendo uma abstração de comunicação lógica entre os clientes conectados e o servidor. 
-O servidor gerencia conexões, utiliza threads para garantir comunicação simultânea e implementa timeouts para tratar possíveis falhas.
+O ChatsZap permite que vários clientes se conectem a um servidor central, 
+possibilitando o envio e recebimento de mensagens em tempo real. 
+A arquitetura do sistema utiliza sockets para estabelecer uma comunicação lógica entre os processos dos clientes e o servidor.
+
 
 ## Tecnologias Utilizadas
 
@@ -47,4 +48,16 @@ git clone https://github.com/rose-del/chatSocket-java.git
 - **Navegue até o diretório do projeto:**
 ```bash
 cd chatSocket
+```
+- **Compile o código fonte:**
+```bash
+javac src/Servidor.java  src/Cliente.java
+```
+- **Execute o Servidor:**
+```bash
+java src.Main
+```
+- **Execute o Cliente:**
+```bah
+java src.Cliente
 ```
