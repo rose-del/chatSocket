@@ -98,3 +98,13 @@ A arquitetura do sistema utiliza sockets para estabelecer uma comunicação lóg
 ## 🖼️ Interface gráfica com Java Swing
 
 ![Image](https://github.com/user-attachments/assets/d725486e-52cf-4933-a6bf-6403880b3dba)
+
+---
+
+## 👥 Autores
+
+- [![PauloPSAS](https://img.shields.io/badge/-Paulo-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/PauloPSAS)
+- [![rose-del](https://img.shields.io/badge/-rose-del181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rose-del)
+- [![Julia-py](https://img.shields.io/badge/-Julia-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Julia-py)
+
+---
